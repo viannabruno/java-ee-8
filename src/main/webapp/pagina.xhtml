@@ -19,22 +19,26 @@
     <h:panelGrid columns="2" cellpadding="5">
 
         <p:outputLabel value="Nome:" for="nome" />
-        <p:inputText id="nome" value="#{PessoaController.nome}" />
+        <p:inputText id="nome" value="#{pessoaController.nome}" />
 
         <p:outputLabel value="Telefone:" for="telefone" />
-        <p:inputText id="telefone" value="#{PessoaController.telefone}" />
+        <p:inputText id="telefone" value="#{pessoaController.telefone}" />
 
         <p:outputLabel value="Endereço:" for="endereco" />
-        <p:inputText id="endereco" value="#{PessoaController.endereco}" />
+        <p:inputText id="endereco" value="#{pessoaController.endereco}" />
 
-        <p:commandButton  value="Cadastrar"
-                          action="#{PessoaController.adicionar}" >
-        </p:commandButton>
+
     </h:panelGrid>
 
+    
+    <p:commandButton  value="Cadastrar"
+                      action="#{pessoaController.adicionar}" >
+    </p:commandButton>
+
+    <h:panelGrid>
     <h:form>
         <h2>Tabela</h2>
-        <p:dataTable var="pessoa" value="#{PessoaController.pessoas}">
+        <p:dataTable id="tabela" var="pessoa" value="#{pessoaController.pessoa}">
 
             <p:column headerText="Nome">
                 <h:outputText value="#{pessoa.nome}" />
@@ -50,8 +54,9 @@
         </p:dataTable>
 
 
-    </h:form>
 
+    </h:form>
+    </h:panelGrid>
 
 </h:body>
 
