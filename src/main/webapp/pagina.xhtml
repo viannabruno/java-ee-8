@@ -19,26 +19,34 @@
     <h:panelGrid columns="2" cellpadding="5">
 
         <p:outputLabel value="Nome:" for="nome" />
-        <p:inputText id="nome" value="#{pessoaController.nome}" />
+        <p:inputText id="nome" value="#{pessoaController.pessoaFrom.nome}" />
 
         <p:outputLabel value="Telefone:" for="telefone" />
-        <p:inputText id="telefone" value="#{pessoaController.telefone}" />
+        <p:inputText id="telefone" value="#{pessoaController.pessoaForm.telefone}" />
 
         <p:outputLabel value="Endereço:" for="endereco" />
-        <p:inputText id="endereco" value="#{pessoaController.endereco}" />
+        <p:inputText id="endereco" value="#{pessoaController.pessoaForm.endereco}" />
 
 
     </h:panelGrid>
+        
+        <p:commandButton value="Adicionar" id="withIcon" action="#{pessoaController.adicionar}" update="tabelaPessoa formularioPessoa"
+                         style="margin-right:20px;" icon="pi pi-save"/>
 
+        <p:commandButton value="Limpar" id="withIcon2" action="#{pessoaController.limpar}" update="@form"
+                         style="margin-right:20px;" icon="pi pi-save"/>
+
+        <p:commandButton value="Exluir" id="withIcon3" action="#{pessoaController.excluir}" update="@form"
+                         style="margin-right:20px;" icon="pi pi-save"/>
+   
     
-    <p:commandButton  value="Cadastrar"
-                      action="#{pessoaController.adicionar}" >
-    </p:commandButton>
 
     <h:panelGrid>
     <h:form>
         <h2>Tabela</h2>
-        <p:dataTable id="tabela" var="pessoa" value="#{pessoaController.pessoa}">
+        <p:dataTable id="tabela" var="pessoa" value="#{pessoaController.pessoas}" selectionMode="single" selection="#{pessoaController.pessoaSelecionada}" rowKey="#{pessoa}">
+                <p:ajax event="rowSelect" listener="#{pessoaController.aoSelecionar}" update="@form" />
+            <p:ajax event="rowUnselect" listener="#{pessoaController.aoDesselecionar}" update="@form" />
 
             <p:column headerText="Nome">
                 <h:outputText value="#{pessoa.nome}" />
