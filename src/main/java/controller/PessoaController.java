@@ -12,62 +12,64 @@ import java.util.List;
 @ViewScoped
 public class PessoaController implements Serializable {
 
-    private String nome;
-    private String telefone;
-    private String endereco;
-    private Pessoa pessoa;
+   
 
-    private List<Pessoa> pessoas;
+    private Pessoa pessoaForm;
+    private List<Pessoa> pessoas;// = new ArrayList<>();
+    private Pessoa pessoaSelecionada;
 
-    public PessoaController() {
+   
+
+    
+    @PostConstruct
+    private void innit (){
+        pessoaForm = new Pessoa();
+        pessoas = new ArrayList<>();
     }
-
-    public void adicionar(){
-
-      Pessoa p = new Pessoa();
-
-      p.getNome();
-      p.getEndereco();
-      p.getTelefone();
-
-      pessoas.add(p);
-
-
+    
+   public void adicionar(){
+        pessoas.add(pessoaForm);
+        limpar();
     }
 
     public void limpar(){
-
+        this.pessoaForm = new Pessoa();
     }
 
-    public String getNome() {
-        return nome;
+    public void excluir(){
+        this.pessoas.remove(pessoaForm);
+    }
+    
+    public void aoSelecionar(){
+        this.pessoaForm = pessoaSelecionada;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void aoDesselecionar(){
+        limpar();
     }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public List<Pessoa> getPessoa() {
+    
+    public List<Pessoa> getPessoas() {
         return pessoas;
     }
-
-    public void setPessoa(List<Pessoa> pessoas) {
+    public void setPessoas(List<Pessoa> pessoas) {
         this.pessoas = pessoas;
     }
+
+    public Pessoa getPessoaSelecionada() {
+        return pessoaSelecionada;
+    }
+
+    public void setPessoaSelecionada(Pessoa pessoaSelecionada) {
+        this.pessoaSelecionada = pessoaSelecionada;
+    }
+
+    public Pessoa getPessoaForm() {
+        return pessoaForm;
+    }
+
+    public void setPessoaForm(Pessoa pessoaForm) {
+        this.pessoaForm = pessoaForm;
+    }
+
+   
 }
