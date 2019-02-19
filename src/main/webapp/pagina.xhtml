@@ -21,8 +21,7 @@
             <h:panelGrid columns="2" cellpadding="5">
 
                 <p:outputLabel value="Nome:" for="nome" />
-                <p:inputText id="nome" value="#{pessoaController.pessoaForm.nome}"
-                             completeMethod="#{pessoaController.completeNome}"/>
+                <p:inputText id="nome" value="#{pessoaController.pessoaForm.nome}"/>
 
                 <p:outputLabel value="Telefone:" for="telefone" />
                 <p:inputText id="telefone" value="#{pessoaController.pessoaForm.telefone}" />
@@ -33,21 +32,21 @@
 
             </h:panelGrid>
         </p:panel>
-    </h:form>
+
         
-        <p:commandButton value="Adicionar"  action="#{pessoaController.adicionar}"
+        <p:commandButton value="Adicionar"  action="#{pessoaController.adicionar}" update="tabela formulario"
                          style="margin-right:20px;" />
 
-        <p:commandButton value="Limpar"  action="#{pessoaController.limpar}"
+        <p:commandButton value="Limpar"  action="#{pessoaController.limpar}" update="formulario"
                          style="margin-right:20px;" />
 
-        <p:commandButton value="Exluir"  action="#{pessoaController.excluir}"
+        <p:commandButton value="Exluir"  action="#{pessoaController.excluir}" update="tabela"
                          style="margin-right:20px;" />
    
     
 
 
-    <h:form>
+
         <h2>Tabela</h2>
         <p:dataTable id="tabela" var="pessoa" value="#{pessoaController.pessoas}" selectionMode="single" selection="#{pessoaController.pessoaSelecionada}" rowKey="#{pessoa}">
                 <p:ajax event="rowSelect" listener="#{pessoaController.aoSelecionar}" update="@form" />
