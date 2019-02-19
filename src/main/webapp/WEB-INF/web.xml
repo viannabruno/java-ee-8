@@ -19,6 +19,12 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+
 
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>

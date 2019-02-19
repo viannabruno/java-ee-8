@@ -2,14 +2,17 @@ package controller;
 
 import bean.Pessoa;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
+
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-
+@SessionScoped
 @Named
-@ViewScoped
 public class PessoaController implements Serializable {
 
    
