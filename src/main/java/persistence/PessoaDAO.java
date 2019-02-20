@@ -29,6 +29,8 @@ public class PessoaDAO implements Serializable {
 
     @Transactional
     public void delete(Pessoa p){
+
+        p = em.find(Pessoa.class, p.getId());
         em.remove(p);
     }
 

@@ -55,7 +55,8 @@ public class PessoaController implements Serializable {
     }
 
     public void excluir(){
-        //this.pessoas.remove(pessoaForm);
+
+        this.pessoas.remove(pessoaForm);
 
         pd.delete(pessoaForm);
         limpar();
