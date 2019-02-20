@@ -17,6 +17,8 @@
 
 
     <h:form>
+        <p:growl id="growl" showDetail="false" sticky="true" />
+
         <p:panel id="formulario" header="Cadastro de Pessoas" style="margin-bottom:40px">
             <h:panelGrid columns="2" cellpadding="5">
 
@@ -34,14 +36,14 @@
         </p:panel>
 
         
-        <p:commandButton value="Adicionar"  action="#{pessoaController.adicionar}" update="tabela formulario"
+        <p:commandButton value="Adicionar"  action="#{pessoaController.adicionar}" update="@form"
                          style="margin-right:20px;" />
 
-        <p:commandButton value="Limpar"  action="#{pessoaController.limpar}" update="formulario"
-                         style="margin-right:20px;" />
+        <p:commandButton value="Limpar"  action="#{pessoaController.limpar}" update="@form"
+                         style="margin-right:20px;" immediate="true" process="@this"/>
 
-        <p:commandButton value="Exluir"  action="#{pessoaController.excluir}" update="tabela"
-                         style="margin-right:20px;" />
+        <p:commandButton value="Exluir"  action="#{pessoaController.excluir}" update="@form"
+                         style="margin-right:20px;" immediate="true"  process="@this"/>
    
     
 
@@ -65,7 +67,10 @@
             </p:column>
 
             <p:column headerText="Data de Criação">
-                <h:outputText value="#{pessoa.dataDeCriacao}"/>
+                <h:outputText value="#{pessoa.dataDeCriacao}">
+                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" type="localDateTime"/>
+                </h:outputText>
+
             </p:column>
         </p:dataTable>
 

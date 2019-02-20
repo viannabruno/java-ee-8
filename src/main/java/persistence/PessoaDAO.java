@@ -19,19 +19,27 @@ public class PessoaDAO implements Serializable {
     @Transactional
     public void salvar(Pessoa p){
         em.persist(p);
+
     }
 
 
     public List<Pessoa> consultar(){
+
         return em.createQuery("select p from Pessoa p" ,Pessoa.class).getResultList();
 
     }
 
     @Transactional
     public void delete(Pessoa p){
+        //p = em.find(Pessoa.class, p.getId());
+//      posso usar o find ou o merge
+        p = em.merge(p);
 
-        p = em.find(Pessoa.class, p.getId());
         em.remove(p);
+
+//        resolvendo em uma linha
+        // em.remove(em.merge(p));
+
     }
 
 

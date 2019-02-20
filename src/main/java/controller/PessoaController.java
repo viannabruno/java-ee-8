@@ -10,10 +10,11 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@SessionScoped
+@ViewScoped
 @Named
 public class PessoaController implements Serializable {
 
@@ -42,7 +43,7 @@ public class PessoaController implements Serializable {
 
 
    public void adicionar(){
-        //pessoas.add(pessoaForm);
+        //pessoas.add(pessoaForm)
 
        pd.salvar(pessoaForm);
         limpar();
@@ -50,16 +51,17 @@ public class PessoaController implements Serializable {
 
     }
 
+
     public void limpar(){
         this.pessoaForm = new Pessoa();
     }
 
     public void excluir(){
-
         //this.pessoas.remove(pessoaForm);
+
         pd.delete(pessoaForm);
-        atualizarTabela();
         limpar();
+        atualizarTabela();
     }
     
     public void aoSelecionar(){

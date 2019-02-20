@@ -1,9 +1,7 @@
 package bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -15,8 +13,11 @@ public class Pessoa implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotEmpty(message = "Mensagem personalizada")
     private String nome;
+
     private String telefone;
+
     private String endereco;
 
     private LocalDateTime dataDeCriacao;
@@ -26,6 +27,10 @@ public class Pessoa implements Serializable {
         this.telefone = telefone;
         this.endereco = endereco;
         this.dataDeCriacao = dataDeCriacao;
+    }
+
+    public Pessoa() {
+
     }
 
     @Override
@@ -41,7 +46,11 @@ public class Pessoa implements Serializable {
         return Objects.hash(id);
     }
 
-    public Pessoa() {
+
+    @PrePersist
+    @PreUpdate
+    public void preSalvar(){
+        dataDeCriacao = LocalDateTime.now();
     }
 
     public String getNome() {
